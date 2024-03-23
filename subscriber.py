@@ -20,6 +20,11 @@ def on_message(client, userdata, msg):
     client.publish(BACK_CHANNEL, output)
 
 # Function to execute C++ code and return the output
+def on_connect(client, userdata, flags, rc):
+    subscriber.subscribe(TOPIC)
+    print(f"Subscribed to {TOPIC}")
+    print(f"Connected with code {rc}")
+
 def execute_cpp_code(code):
     # Write the C++ code to a file
     with open("temp.cpp", "w") as file:
@@ -39,12 +44,12 @@ subscriber = mqtt.Client("Subscriber")
 
 # Set up callback functions
 subscriber.on_message = on_message
-
+subscriber.on_connect = on_connect
 # Connect to MQTT broker
 subscriber.connect(MQTT_BROKER, MQTT_PORT, 60)
 
+subscriber.loop_start()
 # Subscribe to the code topic
-subscriber.subscribe(TOPIC)
-
 # Start the MQTT client loop
-subscriber.loop_forever()
+while True:
+    pass

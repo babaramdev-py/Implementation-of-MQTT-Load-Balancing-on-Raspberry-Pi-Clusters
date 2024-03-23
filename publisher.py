@@ -19,8 +19,9 @@ int main() {
 # Callback function when the publisher connects to the broker
 def on_connect(client, userdata, flags, rc):
     print("Publisher connected with result code "+str(rc))
-    # Publish the C++ code to the subscriber
-    client.publish(TOPIC, cpp_code)
+    publisher.subscribe(BACK_CHANNEL)
+    print(f"Subsribed to {BACK_CHANNEL}")
+
 
 # Callback function when the publisher receives acknowledgment
 def on_message(client, userdata, msg):
@@ -36,15 +37,13 @@ publisher.on_message = on_message
 
 # Connect to MQTT broker
 publisher.connect(MQTT_BROKER, MQTT_PORT, 60)
-
+publisher.loop_start()
 # Subscribe to the acknowledgment topic
-publisher.subscribe(BACK_CHANNEL)
+
 
 # Start the MQTT client loop
-publisher.loop_start()
-
-# Wait for acknowledgment
-time.sleep(5)
-
-# Disconnect from MQTT broker
-publisher.disconnect()
+while True:
+     # Publish the C++ code to the subscriber
+    publisher.publish(TOPIC, cpp_code)
+    print(f"Code published\nWaiting for output")
+    time.sleep(10)
