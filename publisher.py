@@ -1,13 +1,13 @@
 import paho.mqtt.client as mqtt
 import time
 
-# Define constants
-MQTT_BROKER = "localhost"  # Change this to your MQTT broker address
-MQTT_PORT = 1883  # Default MQTT port
+# constants
+MQTT_BROKER = "localhost"  # broker address
+MQTT_PORT = 1883  # mqtt port
 TOPIC = "test/code"
 BACK_CHANNEL = "test/output"
 
-# C++ code to print "Hello, world!"
+# c++ code to print "Hello, world!"
 cpp_code = """
 #include <iostream>
 int main() {
@@ -16,14 +16,14 @@ int main() {
 }
 """
 
-# Callback function when the publisher connects to the broker
+# callback function when the publisher connects to the broker
 def on_connect(client, userdata, flags, rc):
     print("Publisher connected with result code "+str(rc))
     publisher.subscribe(BACK_CHANNEL)
     print(f"Subsribed to {BACK_CHANNEL}")
 
 
-# Callback function when the publisher receives acknowledgment
+# callback function when the publisher receives acknowledgment
 def on_message(client, userdata, msg):
     print("Received acknowledgment from subscriber:")
     print(msg.payload.decode())
@@ -46,4 +46,4 @@ while True:
      # Publish the C++ code to the subscriber
     publisher.publish(TOPIC, cpp_code)
     print(f"Code published\nWaiting for output")
-    time.sleep(10)
+    time.sleep(5)
