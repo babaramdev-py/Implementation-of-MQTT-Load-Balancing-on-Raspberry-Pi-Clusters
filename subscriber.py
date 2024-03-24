@@ -4,7 +4,7 @@ import subprocess
 MQTT_BROKER = "localhost"  # broker address
 MQTT_PORT = 1883  # mqtt port
 INPUT_TOPIC = "inputcode/node1"
-BACK_CHANNEL = "test/output"
+BACK_CHANNEL = "outputcode/master"
 
 def on_message(client, userdata, msg):
     print("Received code from publisher:")
