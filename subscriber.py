@@ -3,7 +3,7 @@ import subprocess
 
 MQTT_BROKER = "localhost"  # broker address
 MQTT_PORT = 1883  # mqtt port
-TOPIC = "test/code"
+INPUT_TOPIC = "inputcode/node1"
 BACK_CHANNEL = "test/output"
 
 def on_message(client, userdata, msg):
@@ -16,8 +16,8 @@ def on_message(client, userdata, msg):
     client.publish(BACK_CHANNEL, output)
 
 def on_connect(client, userdata, flags, rc):
-    subscriber.subscribe(TOPIC)
-    print(f"Subscribed to {TOPIC}")
+    subscriber.subscribe(INPUT_TOPIC)
+    print(f"Subscribed to {INPUT_TOPIC}")
     print(f"Connected with code {rc}")
 
 def execute_cpp_code(code):

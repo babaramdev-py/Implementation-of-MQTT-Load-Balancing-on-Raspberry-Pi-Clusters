@@ -3,8 +3,8 @@ import time
 
 MQTT_BROKER = "localhost"  # broker address
 MQTT_PORT = 1883  # mqtt port
-TOPIC = "test/code"
-BACK_CHANNEL = "test/output"
+TOPIC = "inputcode/node1"
+BACK_CHANNEL = "outputcode/master"
 
 cpp_code = """
 #include <bits/stdc++.h>
