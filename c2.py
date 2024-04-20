@@ -1,5 +1,6 @@
 import paho.mqtt.client as mqtt
 import subprocess
+import json 
 
 MQTT_BROKER = "localhost"
 MQTT_PORT = 1883
@@ -8,12 +9,31 @@ BACK_CHANNEL = "outputcode/master"
 
 def on_message(client, userdata, msg):
     print("Received code from publisher:")
-    print(msg.payload.decode())
+    # print(msg.payload.decode())
 
-    code = msg.payload.decode()
-    output = execute_cpp_code(code)
+    # Decode JSON payload
+    try:
+        json_data = json.loads(msg.payload.decode())
+        print(json_data)
+        code = json_data.get("cpp_code")
+        topic = json_data.get("topic")
+        
+        # Execute the received C++ code
+        output = execute_cpp_code(code)
 
-    client.publish(BACK_CHANNEL, output)
+        # Create JSON payload for output
+        output_payload = {
+            "output": output,
+            "topic": topic
+        }
+
+        # Publish output payload back to master
+        client.publish(BACK_CHANNEL, json.dumps(output_payload))
+    except json.JSONDecodeError:
+        print("Error decoding JSON payload")
+    except Exception as e:
+        print(f"Error processing message: {str(e)}")
+
 
 def on_connect(client, userdata, flags, rc):
     subscriber.subscribe(INPUT_CHANNEL)
