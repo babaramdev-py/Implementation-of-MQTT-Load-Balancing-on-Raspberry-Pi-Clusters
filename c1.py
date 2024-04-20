@@ -1,9 +1,9 @@
 import paho.mqtt.client as mqtt
 import subprocess
 
-MQTT_BROKER = "localhost"  # broker address
-MQTT_PORT = 1883  # mqtt port
-INPUT_TOPIC = "inputcode/node1"
+MQTT_BROKER = "localhost"
+MQTT_PORT = 1883
+INPUT_CHANNEL = "inputcode/node1"
 BACK_CHANNEL = "outputcode/master"
 
 def on_message(client, userdata, msg):
@@ -16,27 +16,25 @@ def on_message(client, userdata, msg):
     client.publish(BACK_CHANNEL, output)
 
 def on_connect(client, userdata, flags, rc):
-    subscriber.subscribe(INPUT_TOPIC)
-    print(f"Subscribed to {INPUT_TOPIC}")
+    subscriber.subscribe(INPUT_CHANNEL)
+    print(f"Subscribed to {INPUT_CHANNEL}")
     print(f"Connected with code {rc}")
 
 def execute_cpp_code(code):
     with open("temp.cpp", "w") as file:
         file.write(code)
 
-    subprocess.run(["g++", "temp.cpp", "-o", "temp.out"])
+    try:
+        subprocess.run(["g++", "temp.cpp", "-o", "temp.out"], check=True)
+        result = subprocess.run(["./temp.out"], capture_output=True, text=True, check=True)
+        return result.stdout
+    except subprocess.CalledProcessError as e:
+        return f"Error: {e.stderr}"
 
-    result = subprocess.run(["./temp.out"], capture_output=True, text=True)
-
-    return result.stdout
-
-subscriber = mqtt.Client("Subscriber")
-
+subscriber = mqtt.Client("Child_Node_One")
 subscriber.on_message = on_message
 subscriber.on_connect = on_connect
-
 subscriber.connect(MQTT_BROKER, MQTT_PORT, 60)
-
 subscriber.loop_start()
 
 while True:
