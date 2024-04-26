@@ -8,16 +8,14 @@ INPUT_CHANNEL = "inputcode/node1"
 BACK_CHANNEL = "outputcode/master"
 
 def on_message(client, userdata, msg):
-    print("Received code from publisher:")
-    # print(msg.payload.decode())
-
     # Decode JSON payload
     try:
         json_data = json.loads(msg.payload.decode())
         print(json_data)
         code = json_data.get("cpp_code")
         topic = json_data.get("topic")
-        
+        print("Code received from master")
+        print(f"{code}")
         # Execute the received C++ code
         output = execute_cpp_code(code)
 

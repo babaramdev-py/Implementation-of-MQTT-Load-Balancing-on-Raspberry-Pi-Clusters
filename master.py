@@ -14,8 +14,7 @@ cpp_code = """
 using namespace std;
 int main() {
     int a=0;
-    int b=1;
-    cout << "Response From Child Node One" << endl;
+    int b=0;
     cout << a + b << endl;
     return 0;
 }
@@ -24,9 +23,8 @@ cpp_code_two = """
 #include <iostream>
 using namespace std;
 int main() {
-    int a=0;
-    int b=2;
-    cout << "Response From Child Node Two" << endl;
+    int a=120912;
+    int b=4000;
     cout << a + b << endl;
     return 0;
 }
@@ -35,24 +33,48 @@ int main() {
 Topic_Queue = []
 Topic_Queue.append(TOPIC_1)
 Topic_Queue.append(TOPIC_2)
+print("---------------------------------------------------")
 
-code_queue = queue.Queue()
-code_queue.put(cpp_code)
-code_queue.put(cpp_code_two)
 
+code_queue = []
+code_queue.append(cpp_code)
+code_queue.append(cpp_code_two)
+
+print("Code Queue Data")
+
+item = 0
+for i in code_queue:
+    item = item + 1
+    print(f"Snippet {item} ")
+    print(f"{i}")
+
+print("---------------------------------------------------")
+
+
+print("Topic Queue data")
+
+for i in Topic_Queue:
+    print(i)
+
+print("---------------------------------------------------")
 
 def on_connect(client, userdata, flags, rc):
     print("Publisher connected with result code "+str(rc))
     publisher.subscribe(BACK_CHANNEL)
     print(f"Subscribed to {BACK_CHANNEL}")
+    print("---------------------------------------------------")
 
 def on_message(client, userdata, msg):
-    print(f"Received acknowledgment from Child Node")
+    print("---------------------------------------------------")
     json_data = json.loads(msg.payload.decode())
     # add topic back to the Topic_Queue
     responded_channel = json_data["topic"]
     Topic_Queue.append(responded_channel)
+    print(f"Received acknowledgment from Child Node {responded_channel}")
+    print(code_queue)
     print(json_data["output"])
+    print("---------------------------------------------------")
+
 
 publisher = mqtt.Client("Master_Node")
 publisher.on_connect = on_connect
@@ -68,12 +90,13 @@ while True:
 
         # Prepare JSON payload
         # time.sleep(1)
-        while not code_queue.empty():
-            time.sleep(2)
-            cpp_code = code_queue.get()
+        while len(code_queue) > 0:
+            time.sleep(1)
+            cpp_code = code_queue.pop()
             if len(Topic_Queue) > 0:
+                print(Topic_Queue)
                 channel = Topic_Queue.pop()
-
+                print(Topic_Queue)
                 json_payload = {
                     "cpp_code": cpp_code,
                     "topic": channel

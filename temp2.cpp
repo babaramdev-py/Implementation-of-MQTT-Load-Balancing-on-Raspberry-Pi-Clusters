@@ -2,9 +2,8 @@
 #include <iostream>
 using namespace std;
 int main() {
-    int a=0;
-    int b=2;
-    cout << "Response From Child Node Two" << endl;
+    int a=120912;
+    int b=4000;
     cout << a + b << endl;
     return 0;
 }

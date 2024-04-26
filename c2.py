@@ -1,3 +1,5 @@
+import time
+
 import paho.mqtt.client as mqtt
 import subprocess
 import json 
@@ -14,9 +16,10 @@ def on_message(client, userdata, msg):
     # Decode JSON payload
     try:
         json_data = json.loads(msg.payload.decode())
-        print(json_data)
         code = json_data.get("cpp_code")
         topic = json_data.get("topic")
+        print("Code Received from master")
+        print(f"{code}")
         
         # Execute the received C++ code
         output = execute_cpp_code(code)
@@ -26,7 +29,7 @@ def on_message(client, userdata, msg):
             "output": output,
             "topic": topic
         }
-
+        time.sleep(3)
         # Publish output payload back to master
         client.publish(BACK_CHANNEL, json.dumps(output_payload))
     except json.JSONDecodeError:
