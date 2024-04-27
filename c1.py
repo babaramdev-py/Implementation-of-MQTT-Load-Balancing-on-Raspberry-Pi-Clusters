@@ -11,7 +11,6 @@ def on_message(client, userdata, msg):
     # Decode JSON payload
     try:
         json_data = json.loads(msg.payload.decode())
-        print(json_data)
         code = json_data.get("cpp_code")
         topic = json_data.get("topic")
         print("Code received from master")
