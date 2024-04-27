@@ -1,6 +1,5 @@
 import paho.mqtt.client as mqtt
 import time
-import queue
 import json
 
 MQTT_BROKER = "localhost"
@@ -82,6 +81,7 @@ publisher.on_connect = on_connect
 publisher.on_message = on_message
 publisher.connect(MQTT_BROKER, MQTT_PORT, 60)
 publisher.loop_start()
+i = 11
 
 while True:
     while len(code_queue) > 0:
@@ -100,5 +100,7 @@ while True:
 
         else:
             continue
-    print(Topic_Queue)
-
+    time.sleep(15)
+    if i > 0:
+        i = i - 1
+        print(Topic_Queue)
