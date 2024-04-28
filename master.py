@@ -110,6 +110,60 @@ int main()
 
 """
 
+code_eight = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int number = 12345;
+    int sum = 0;
+    int temp = number;
+    while(temp != 0) {
+        sum += temp % 10;
+        temp /= 10;
+    }
+    cout << "Sum of Digits of " << number << " is: " << sum << endl;
+    return 0;
+}
+
+"""
+
+code_nine = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    float principal = 1000;
+    float rate = 5.0;
+    float time = 2.5;
+    float interest = (principal * rate * time) / 100;
+    cout << "Simple Interest: " << interest << endl;
+    return 0;
+}
+"""
+
+code_ten = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "ASCII values of A-Z: ";
+    for(char c = 'A'; c <= 'Z'; ++c) {
+        cout << int(c) << " ";
+    }
+    cout << endl;
+    return 0;
+}
+
+"""
+
+
+
+
+
+
+
+
 
 Topic_Queue = []
 Topic_Queue.append(TOPIC_1)
@@ -126,6 +180,9 @@ code_queue.append(code_four)
 code_queue.append(code_five)
 code_queue.append(code_six)
 code_queue.append(code_seven)
+code_queue.append(code_eight)
+code_queue.append(code_nine)
+code_queue.append(code_ten)
 
 print("Code Queue Data")
 
@@ -152,24 +209,22 @@ def on_connect(client, userdata, flags, rc):
     print("---------------------------------------------------")
 
 def on_message(client, userdata, msg):
-    print("---------------------------------------------------")
+    print("---------------------------------------------------\n\n")
     json_data = json.loads(msg.payload.decode())
     # add topic back to the Topic_Queue
     responded_channel = json_data["topic"]
     Topic_Queue.append(responded_channel)
     print(f"Received acknowledgment from Child Node {responded_channel}")
-    print(code_queue)
+    # print(code_queue)
     print(json_data["output"])
-    print("---------------------------------------------------")
-    print("Current Status of Topic Queue on receiving the message = ", Topic_Queue)
+    print("---------------------------------------------------\n\n")
 
 
 publisher = mqtt.Client("Master_Node")
 publisher.on_connect = on_connect
 publisher.on_message = on_message
-publisher.connect(MQTT_BROKER, MQTT_PORT, 60)
+publisher.connect(MQTT_BROKER, MQTT_PORT, 120)
 publisher.loop_start()
-i = 11
 
 while True:
     while len(code_queue) > 0:
@@ -184,11 +239,9 @@ while True:
                 "topic": channel
             }
             json_str = json.dumps(json_payload)
-            publisher.publish(channel, json_str)
-
+            publisher.publish(channel, json_str)        
         else:
             continue
-    time.sleep(15)
-    if i > 0:
-        i = i - 1
+    if len(code_queue) == 0:
+        time.sleep(10)
         print(Topic_Queue)
