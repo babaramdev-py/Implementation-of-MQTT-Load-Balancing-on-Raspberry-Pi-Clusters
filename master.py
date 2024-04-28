@@ -6,19 +6,22 @@ MQTT_BROKER = "localhost"
 MQTT_PORT = 1883
 TOPIC_1 = "inputcode/node1"
 TOPIC_2 = "inputcode/node2"
+TOPIC_3 = "inputcode/node3"
 BACK_CHANNEL = "outputcode/master"
 
-cpp_code = """
+
+code_one = """
 #include <iostream>
 using namespace std;
 int main() {
-    int a=0;
-    int b=0;
+    int a=400;
+    int b=200;
     cout << a + b << endl;
     return 0;
 }
 """
-cpp_code_two = """
+
+code_two = """
 #include <iostream>
 using namespace std;
 int main() {
@@ -29,15 +32,100 @@ int main() {
 }
 """
 
+code_three = """
+#include <iostream>
+using namespace std;
+
+int main() {
+  cout << "Hello World!";
+  return 0;
+}
+"""
+
+code_four = """
+#include <iostream>
+using namespace std;
+int main()
+{
+    int fact = 1;
+	int rows = 4;
+	for(int i = 1; i <= rows; i++)
+    {
+        fact = fact*i;
+    }
+    cout << "Factorial = " << fact << endl;
+    return 0; 
+}
+"""
+
+code_five = """
+#include <iostream>
+using namespace std;
+int main()
+{
+    int fact = 1;
+	int rows = 5;
+	for(int i = 1; i <= rows; i++)
+    {
+        fact = fact*i;
+    }
+    cout << "Factorial = " << fact << endl;
+    return 0; 
+}
+
+
+"""
+
+code_six = """
+#include <iostream>
+using namespace std;
+int main()
+{
+    int fact = 1;
+	int rows = 6;
+	for(int i = 1; i <= rows; i++)
+    {
+        fact = fact*i;
+    }
+    cout << "Factorial = " << fact << endl;
+    return 0; 
+}
+
+"""
+
+code_seven = """
+#include <iostream>
+using namespace std;
+int main()
+{
+    int fact = 1;
+	int rows = 7;
+	for(int i = 1; i <= rows; i++)
+    {
+        fact = fact*i;
+    }
+    cout << "Factorial = " << fact << endl;
+    return 0; 
+}
+
+"""
+
+
 Topic_Queue = []
 Topic_Queue.append(TOPIC_1)
 Topic_Queue.append(TOPIC_2)
+Topic_Queue.append(TOPIC_3)
 print("---------------------------------------------------")
 
 
 code_queue = []
-code_queue.append(cpp_code)
-code_queue.append(cpp_code_two)
+code_queue.append(code_one)
+code_queue.append(code_two)
+code_queue.append(code_three)
+code_queue.append(code_four)
+code_queue.append(code_five)
+code_queue.append(code_six)
+code_queue.append(code_seven)
 
 print("Code Queue Data")
 
