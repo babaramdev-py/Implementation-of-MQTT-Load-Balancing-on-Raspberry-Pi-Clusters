@@ -10,6 +10,7 @@ INPUT_CHANNEL = "inputcode/node2"
 BACK_CHANNEL = "outputcode/master"
 
 def on_message(client, userdata, msg):
+    time.sleep(0.5)
     print("Received code from publisher:")
     # print(msg.payload.decode())
 
@@ -29,7 +30,7 @@ def on_message(client, userdata, msg):
             "output": output,
             "topic": topic
         }
-        time.sleep(3)
+        # time.sleep(3)
         # Publish output payload back to master
         client.publish(BACK_CHANNEL, json.dumps(output_payload))
     except json.JSONDecodeError:

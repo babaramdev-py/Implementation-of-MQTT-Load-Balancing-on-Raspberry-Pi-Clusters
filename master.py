@@ -157,9 +157,126 @@ int main() {
 
 """
 
+code_eleven = """
+#include <iostream>
+using namespace std;
 
+int main() {
+    int x = 10;
+    int y = 5;
+    cout << "Sum: " << x + y << endl;
+    return 0;
+}
+"""
 
+code_twelve = """
+#include <iostream>
+using namespace std;
 
+int main() {
+    int x = 100;
+    int y = 50;
+    cout << "Difference: " << x - y << endl;
+    return 0;
+}
+"""
+
+code_thirteen = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 20;
+    int y = 4;
+    cout << "Product: " << x * y << endl;
+    return 0;
+}
+"""
+
+code_fourteen = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 100;
+    int y = 20;
+    cout << "Quotient: " << x / y << endl;
+    return 0;
+}
+"""
+
+code_fifteen = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 15;
+    int y = 2;
+    cout << "Remainder: " << x % y << endl;
+    return 0;
+}
+"""
+
+code_sixteen = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num = 10;
+    cout << "Square: " << num * num << endl;
+    return 0;
+}
+"""
+
+code_seventeen = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num = 25;
+    cout << "Cube: " << num * num * num << endl;
+    return 0;
+}
+"""
+
+code_eighteen = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num = 3;
+    cout << "Factorial: ";
+    int factorial = 1;
+    for (int i = 1; i <= num; ++i) {
+        factorial *= i;
+    }
+    cout << factorial << endl;
+    return 0;
+}
+"""
+
+code_nineteen = """
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int num = 30;
+    cout << "Square Root: " << sqrt(num) << endl;
+    return 0;
+}
+"""
+
+code_twenty = """
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int num1 = 25;
+    int num2 = 5;
+    cout << "Power: " << pow(num1, num2) << endl;
+    return 0;
+}
+"""
 
 
 
@@ -182,7 +299,20 @@ code_queue.append(code_six)
 code_queue.append(code_seven)
 code_queue.append(code_eight)
 code_queue.append(code_nine)
-code_queue.append(code_ten)
+code_queue.append(code_eleven)
+code_queue.append(code_twelve)
+code_queue.append(code_thirteen)
+code_queue.append(code_fourteen)
+code_queue.append(code_fifteen)
+code_queue.append(code_sixteen)
+code_queue.append(code_seventeen)
+code_queue.append(code_eighteen)
+code_queue.append(code_nineteen)
+code_queue.append(code_twenty)
+
+
+
+
 
 print("Code Queue Data")
 
@@ -209,6 +339,7 @@ def on_connect(client, userdata, flags, rc):
     print("---------------------------------------------------")
 
 def on_message(client, userdata, msg):
+    print("--------------MESSAGES RECEIVED--------------")
     print("---------------------------------------------------\n\n")
     json_data = json.loads(msg.payload.decode())
     # add topic back to the Topic_Queue
@@ -228,7 +359,7 @@ publisher.loop_start()
 
 while True:
     while len(code_queue) > 0:
-        time.sleep(1)
+        time.sleep(0.5)
         cpp_code = code_queue.pop()
         if len(Topic_Queue) > 0:
             # print(Topic_Queue)
