@@ -360,9 +360,9 @@ publisher.loop_start()
 while True:
     while len(code_queue) > 0:
         time.sleep(0.5)
-        cpp_code = code_queue.pop()
         if len(Topic_Queue) > 0:
             # print(Topic_Queue)
+            cpp_code = code_queue.pop()
             channel = Topic_Queue.pop()
             # print(Topic_Queue)
             json_payload = {
