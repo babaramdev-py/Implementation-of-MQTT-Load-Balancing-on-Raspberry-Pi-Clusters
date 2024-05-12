@@ -1,6 +1,7 @@
 import paho.mqtt.client as mqtt
 import time
 import json
+start_time = time.time()  # Record the start time of the inner while loop
 
 MQTT_BROKER = "localhost"
 MQTT_PORT = 1883
@@ -8,7 +9,7 @@ TOPIC_1 = "inputcode/node1"
 TOPIC_2 = "inputcode/node2"
 TOPIC_3 = "inputcode/node3"
 BACK_CHANNEL = "outputcode/master"
-
+MESSAGE_COUNT = 0
 
 code_one = """
 #include <iostream>
@@ -287,7 +288,7 @@ Topic_Queue.append(TOPIC_1)
 Topic_Queue.append(TOPIC_2)
 Topic_Queue.append(TOPIC_3)
 print("---------------------------------------------------")
-
+QSize = len(Topic_Queue)
 
 code_queue = []
 code_queue.append(code_one)
@@ -299,6 +300,7 @@ code_queue.append(code_six)
 code_queue.append(code_seven)
 code_queue.append(code_eight)
 code_queue.append(code_nine)
+code_queue.append(code_ten)
 code_queue.append(code_eleven)
 code_queue.append(code_twelve)
 code_queue.append(code_thirteen)
@@ -339,7 +341,9 @@ def on_connect(client, userdata, flags, rc):
     print("---------------------------------------------------")
 
 def on_message(client, userdata, msg):
-    print("--------------MESSAGES RECEIVED--------------")
+    global MESSAGE_COUNT
+    MESSAGE_COUNT = MESSAGE_COUNT + 1
+    print(f"--------------MESSAGE {MESSAGE_COUNT} RECEIVED--------------")
     print("---------------------------------------------------\n\n")
     json_data = json.loads(msg.payload.decode())
     # add topic back to the Topic_Queue
@@ -359,12 +363,9 @@ publisher.loop_start()
 
 while True:
     while len(code_queue) > 0:
-        time.sleep(0.5)
         if len(Topic_Queue) > 0:
-            # print(Topic_Queue)
             cpp_code = code_queue.pop()
             channel = Topic_Queue.pop()
-            # print(Topic_Queue)
             json_payload = {
                 "cpp_code": cpp_code,
                 "topic": channel
@@ -373,6 +374,8 @@ while True:
             publisher.publish(channel, json_str)        
         else:
             continue
-    if len(code_queue) == 0:
-        time.sleep(10)
+    if len(code_queue) == 0 and len(Topic_Queue) == QSize:
+        end_time = time.time()
+        print("Total Time taken = ", end_time - start_time)
+        # time.sleep(60)
         print(Topic_Queue)
