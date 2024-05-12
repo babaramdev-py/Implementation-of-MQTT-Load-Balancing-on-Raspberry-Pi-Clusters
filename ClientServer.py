@@ -1,3 +1,7 @@
+import time
+import subprocess
+
+
 code_one = """
 #include <iostream>
 using namespace std;
@@ -265,17 +269,6 @@ int main() {
     return 0;
 }
 """
-
-
-
-
-
-Topic_Queue = []
-Topic_Queue.append(TOPIC_1)
-Topic_Queue.append(TOPIC_2)
-Topic_Queue.append(TOPIC_3)
-print("---------------------------------------------------")
-QSize = len(Topic_Queue)
 
 code_queue = []
 code_queue.append(code_one)
