@@ -377,5 +377,5 @@ while True:
     if len(code_queue) == 0 and len(Topic_Queue) == QSize:
         end_time = time.time()
         print("Total Time taken = ", end_time - start_time)
-        # time.sleep(60)
+        time.sleep(60)
         print(Topic_Queue)
