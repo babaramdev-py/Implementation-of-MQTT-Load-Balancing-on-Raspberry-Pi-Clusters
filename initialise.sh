@@ -7,8 +7,6 @@ gnome-terminal -- python3 c1.py &
 gnome-terminal -- python3 c2.py &
 
 # Run c3.py in a new terminal
-gnome-terminal -- python3 c3.py &
+gnome-terminal -- python3 c3.py 
 
-# Run master.py in the current terminal
-gnome-terminal -- python3 master.py
 

@@ -10,7 +10,6 @@ INPUT_CHANNEL = "inputcode/node2"
 BACK_CHANNEL = "outputcode/master"
 
 def on_message(client, userdata, msg):
-    time.sleep(0.5)
     print("Received code from publisher:")
     # print(msg.payload.decode())
 

@@ -10,7 +10,6 @@ BACK_CHANNEL = "outputcode/master"
 
 def on_message(client, userdata, msg):
     # Decode JSON payload
-    time.sleep(0.25)
     try:
         json_data = json.loads(msg.payload.decode())
         code = json_data.get("cpp_code")
