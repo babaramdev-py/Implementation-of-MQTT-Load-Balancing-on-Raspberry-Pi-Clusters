@@ -1,7 +1,6 @@
 import time
 import subprocess
-
-
+start_time = time.time()
 code_one = """
 #include <iostream>
 using namespace std;
@@ -270,26 +269,468 @@ int main() {
 }
 """
 
+code_twentyone = """
+#include <iostream>
+using namespace std;
+int main() {
+    int a=400;
+    int b=200;
+    cout << a + b << endl;
+    return 0;
+}
+"""
+
+code_twentytwo = """
+#include <iostream>
+using namespace std;
+int main() {
+    int a=120912;
+    int b=4000;
+    cout << a + b << endl;
+    return 0;
+}
+"""
+
+code_twentythree = """
+#include <iostream>
+using namespace std;
+
+int main() {
+  cout << "Hello World!";
+  return 0;
+}
+"""
+
+code_twentyfour = """
+#include <iostream>
+using namespace std;
+int main()
+{
+    int fact = 1;
+	int rows = 4;
+	for(int i = 1; i <= rows; i++)
+    {
+        fact = fact*i;
+    }
+    cout << "Factorial = " << fact << endl;
+    return 0; 
+}
+"""
+
+code_twentyfive = """
+#include <iostream>
+using namespace std;
+int main()
+{
+    int fact = 1;
+	int rows = 5;
+	for(int i = 1; i <= rows; i++)
+    {
+        fact = fact*i;
+    }
+    cout << "Factorial = " << fact << endl;
+    return 0; 
+}
+
+
+"""
+
+code_twentysix = """
+#include <iostream>
+using namespace std;
+int main()
+{
+    int fact = 1;
+	int rows = 6;
+	for(int i = 1; i <= rows; i++)
+    {
+        fact = fact*i;
+    }
+    cout << "Factorial = " << fact << endl;
+    return 0; 
+}
+
+"""
+
+code_twentyseven = """
+#include <iostream>
+using namespace std;
+int main()
+{
+    int fact = 1;
+	int rows = 7;
+	for(int i = 1; i <= rows; i++)
+    {
+        fact = fact*i;
+    }
+    cout << "Factorial = " << fact << endl;
+    return 0; 
+}
+
+"""
+
+code_twentyeight = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int number = 12345;
+    int sum = 0;
+    int temp = number;
+    while(temp != 0) {
+        sum += temp % 10;
+        temp /= 10;
+    }
+    cout << "Sum of Digits of " << number << " is: " << sum << endl;
+    return 0;
+}
+
+"""
+
+code_twentynine = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    float principal = 1000;
+    float rate = 5.0;
+    float time = 2.5;
+    float interest = (principal * rate * time) / 100;
+    cout << "Simple Interest: " << interest << endl;
+    return 0;
+}
+"""
+
+code_thirty = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "ASCII values of A-Z: ";
+    for(char c = 'A'; c <= 'Z'; ++c) {
+        cout << int(c) << " ";
+    }
+    cout << endl;
+    return 0;
+}
+
+"""
+
+code_thirtyone = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 10;
+    int y = 5;
+    cout << "Sum: " << x + y << endl;
+    return 0;
+}
+"""
+
+code_thirtytwo = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 100;
+    int y = 50;
+    cout << "Difference: " << x - y << endl;
+    return 0;
+}
+"""
+
+code_thirtythree = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 20;
+    int y = 4;
+    cout << "Product: " << x * y << endl;
+    return 0;
+}
+"""
+
+code_thirtyfour = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 100;
+    int y = 20;
+    cout << "Quotient: " << x / y << endl;
+    return 0;
+}
+"""
+
+code_thirtyfive = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 15;
+    int y = 2;
+    cout << "Remainder: " << x % y << endl;
+    return 0;
+}
+"""
+
+code_thirtysix = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num = 10;
+    cout << "Square: " << num * num << endl;
+    return 0;
+}
+"""
+
+code_thirtyseven = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num = 25;
+    cout << "Cube: " << num * num * num << endl;
+    return 0;
+}
+"""
+
+code_thirtyeight = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num = 3;
+    cout << "Factorial: ";
+    int factorial = 1;
+    for (int i = 1; i <= num; ++i) {
+        factorial *= i;
+    }
+    cout << factorial << endl;
+    return 0;
+}
+"""
+
+code_thirtynine = """
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int num = 30;
+    cout << "Square Root: " << sqrt(num) << endl;
+    return 0;
+}
+"""
+
+code_forty = """
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int num1 = 25;
+    int num2 = 5;
+    cout << "Power: " << pow(num1, num2) << endl;
+    return 0;
+}
+"""
+
+code_forty = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "ASCII values of A-Z: ";
+    for(char c = 'A'; c <= 'Z'; ++c) {
+        cout << int(c) << " ";
+    }
+    cout << endl;
+    return 0;
+}
+
+"""
+
+code_fortyone = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 10;
+    int y = 5;
+    cout << "Sum: " << x + y << endl;
+    return 0;
+}
+"""
+
+code_fortytwo = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 100;
+    int y = 50;
+    cout << "Difference: " << x - y << endl;
+    return 0;
+}
+"""
+
+code_fortythree = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 20;
+    int y = 4;
+    cout << "Product: " << x * y << endl;
+    return 0;
+}
+"""
+
+code_fortyfour = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 100;
+    int y = 20;
+    cout << "Quotient: " << x / y << endl;
+    return 0;
+}
+"""
+
+code_fortyfive = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 15;
+    int y = 2;
+    cout << "Remainder: " << x % y << endl;
+    return 0;
+}
+"""
+
+code_fortysix = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num = 10;
+    cout << "Square: " << num * num << endl;
+    return 0;
+}
+"""
+
+code_fortyseven = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num = 25;
+    cout << "Cube: " << num * num * num << endl;
+    return 0;
+}
+"""
+
+code_fortyeight = """
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num = 3;
+    cout << "Factorial: ";
+    int factorial = 1;
+    for (int i = 1; i <= num; ++i) {
+        factorial *= i;
+    }
+    cout << factorial << endl;
+    return 0;
+}
+"""
+
+code_fortynine = """
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int num = 30;
+    cout << "Square Root: " << sqrt(num) << endl;
+    return 0;
+}
+"""
+
+code_fifty = """
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int num1 = 25;
+    int num2 = 5;
+    cout << "Power: " << pow(num1, num2) << endl;
+    return 0;
+}
+"""
+
+
 code_queue = []
 code_queue.append(code_one)
-code_queue.append(code_two)
-code_queue.append(code_three)
-code_queue.append(code_four)
-code_queue.append(code_five)
-code_queue.append(code_six)
-code_queue.append(code_seven)
-code_queue.append(code_eight)
-code_queue.append(code_nine)
-code_queue.append(code_ten)
-code_queue.append(code_eleven)
-code_queue.append(code_twelve)
-code_queue.append(code_thirteen)
-code_queue.append(code_fourteen)
-code_queue.append(code_fifteen)
-code_queue.append(code_sixteen)
-code_queue.append(code_seventeen)
-code_queue.append(code_eighteen)
-code_queue.append(code_nineteen)
-code_queue.append(code_twenty)
+# code_queue.append(code_two)
+# code_queue.append(code_three)
+# code_queue.append(code_four)
+# code_queue.append(code_five)
+# code_queue.append(code_six)
+# code_queue.append(code_seven)
+# code_queue.append(code_eight)
+# code_queue.append(code_nine)
+# code_queue.append(code_ten)
+# code_queue.append(code_eleven)
+# code_queue.append(code_twelve)
+# code_queue.append(code_thirteen)
+# code_queue.append(code_fourteen)
+# code_queue.append(code_fifteen)
+# code_queue.append(code_sixteen)
+# code_queue.append(code_seventeen)
+# code_queue.append(code_eighteen)
+# code_queue.append(code_nineteen)
+# code_queue.append(code_twenty)
+# code_queue.append(code_twentyone)
+# code_queue.append(code_twentytwo)
+# code_queue.append(code_twentythree)
+# code_queue.append(code_twentyfour)
+# code_queue.append(code_twentyfive)
+# code_queue.append(code_twentysix)
+# code_queue.append(code_twentyseven)
+# code_queue.append(code_twentyeight)
+# code_queue.append(code_twentynine)
+# code_queue.append(code_thirty)
+# code_queue.append(code_thirtyone)
+# code_queue.append(code_thirtytwo)
+# code_queue.append(code_thirtythree)
+# code_queue.append(code_thirtyfour)
+# code_queue.append(code_thirtyfive)
+# code_queue.append(code_thirtysix)
+# code_queue.append(code_thirtyseven)
+# code_queue.append(code_thirtyeight)
+# code_queue.append(code_thirtynine)
+# code_queue.append(code_forty)
+# code_queue.append(code_fortyone)
+# code_queue.append(code_fortytwo)
+# code_queue.append(code_fortythree)
+# code_queue.append(code_fortyfour)
+# code_queue.append(code_fortyfive)
+# code_queue.append(code_fortysix)
+# code_queue.append(code_fortyseven)
+# code_queue.append(code_fortyeight)
+# code_queue.append(code_fortynine)
+# code_queue.append(code_fifty)
+
+for code in code_queue:
+    subprocess.run(['g++', '-o', 'temp', '-x', 'c++', '-'], input=code, text=True, check=True)
+    subprocess.run(['./temp'])  # Execute the compiled C++ code
 
 
+end_time = time.time()
+
+print("\n\nTIME = ",end_time - start_time)
