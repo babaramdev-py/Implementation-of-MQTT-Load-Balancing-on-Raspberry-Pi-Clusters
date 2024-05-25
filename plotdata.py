@@ -11,7 +11,7 @@ data = {
 
 df = pd.DataFrame(data)
 
-plt.figure(figsize=(10, 6))
+plt.figure(figsize=(30, 20))
 
 plt.plot(df["Number of Code Snippets"], df["Three Child Nodes (s)"], label="Three Child Nodes")
 plt.plot(df["Number of Code Snippets"], df["Two Child Nodes (s)"], label="Two Child Nodes")
